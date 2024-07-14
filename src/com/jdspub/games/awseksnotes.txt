@@ -7,3 +7,5 @@ aws ec2 describe-images --owners amazon --query "Images[*].{ID:ImageId,Name:Name
 
 aws ec2 describe-images --owners amazon --query "Images[*].{ID:ImageId,Name:Name}" --output table
 
+aws ec2 describe-images --executable-users self --filters "Name=name,Values=*eVo*" --query "Images[*].{ID:ImageId,Name:Name}" --output table
+
