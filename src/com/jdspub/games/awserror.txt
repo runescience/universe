@@ -1,0 +1,45 @@
+
+Joel BoardgameRpger <joel.siragher@gmail.com>
+6:25 PM (0 minutes ago)
+to me
+
+The error message you're encountering indicates that the operation (`ec2:CreateInternetGateway`) is being denied by a Service Control Policy (SCP) applied in your AWS Organization or an explicit IAM policy attached to your IAM role (`arn:aws:sts:xxxxxx:assumed-role/xxxx-user/xxxxx`). Here’s how to interpret and address this issue:
+
+### Error Analysis
+
+1. **Operation Denied**: The specific action (`ec2:CreateInternetGateway`) is being explicitly denied.
+2. **User Context**: The error message specifies the IAM user (`arn:aws:sts:xxxxxx:assumed-role/xxxx-user/xxxxx`) attempting the operation.
+3. **Deny Condition**: There is an explicit deny in a Service Control Policy (SCP) or an IAM policy that is preventing the user from performing this action.
+
+### Steps to Resolve
+
+To address this issue, follow these steps:
+
+1. **Review SCPs**: If you are in an AWS Organization, check the SCPs applied to your AWS account. SCPs are organization-wide policies that can restrict permissions across the organization's accounts. Look for an SCP that denies the `ec2:CreateInternetGateway` action.
+
+2. **Review IAM Policies**: Check the IAM policies attached to the IAM role (`arn:aws:sts:xxxxxx:assumed-role/xxxx-user/xxxxx`). Look for any policy attached directly to this IAM role or policies inherited from group memberships that explicitly deny `ec2:CreateInternetGateway`.
+
+3. **Update Policies**: Once you identify the policy causing the issue, you can update it to allow the necessary actions. Here’s an example of an IAM policy allowing `ec2:CreateInternetGateway`:
+
+   ```json
+   {
+       "Version": "2012-10-17",
+       "Statement": [
+           {
+               "Effect": "Allow",
+               "Action": "ec2:CreateInternetGateway",
+               "Resource": "arn:aws:ec2:us-east-1:xxxxxxxx:internet-gateway/*"
+           }
+       ]
+   }
+   ```
+
+   Modify your policy to include this `Allow` statement if it's appropriate for your use case.
+
+4. **Test Permissions**: After updating the policies, test the permissions to ensure that the user (`arn:aws:sts:xxxxxx:assumed-role/xxxx-user/xxxxx`) can now perform the necessary actions without encountering the explicit deny error.
+
+5. **Consider SCP Changes**: If the deny is due to an SCP, you may need to involve your AWS account administrator to adjust or remove the SCP affecting your operations.
+
+### Further Assistance
+
+If you're unable to modify SCPs or IAM policies yourself, contact your AWS account administrator or AWS support for assistance. They can provide guidance specific to your organization's policies and help you resolve the permission issues effectively.
