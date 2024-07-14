@@ -1,3 +1,4 @@
+validation error detected: Value 'You are not authorized to perform this operation. User: arn:aws:sts:xxxxxx:assumed-role/xxxx-user/xxxxx is not authorized to perform: ec2:Create Internet Gateway on resource: arn:aws:ec2:us-east-1:xxxxxxxx:internet-gateway/* with an explicit deny in a service control policy.
 
 apiVersion: eksctl.io/v1alpha5
 kind: ClusterConfig
