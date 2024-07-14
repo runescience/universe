@@ -1,11 +1,35 @@
 aws ec2 describe-instance-types --query "InstanceTypes[?starts_with(InstanceType, 't2.micro') || starts_with(InstanceType, 't3.micro') || starts_with(InstanceType, 't4g.micro') || contains(InstanceType, '.micro')]" --output table
 
 
-aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn-ami-*-*-x86_64-gp2" --query "Images[*].{ID:ImageId,Name:Name}" --output table
+aws ec2 describe-images --image-ids ami-xxxxxxxxxxxxxxxxx --query "Images[*].Architecture" --output text
 
-aws ec2 describe-images --owners amazon --query "Images[*].{ID:ImageId,Name:Name}" --output table
 
-aws ec2 describe-images --owners amazon --query "Images[*].{ID:ImageId,Name:Name}" --output table
+un the following AWS CLI command to list all instance types:
+aws ec2 describe-instance-types --query "InstanceTypes[*].InstanceType" --output table
 
-aws ec2 describe-images --executable-users self --filters "Name=name,Values=*eVo*" --query "Images[*].{ID:ImageId,Name:Name}" --output table
+To specifically filter instance types for an AMI, you need to look at instance requirements (e.g., architecture) and ensure the selected instance type matches the AMI requirements.
+
+= = = = = = = = = = =
+Step 1: Get AMI Architecture
+
+aws ec2 describe-images --image-ids ami-xxxxxxxxxxxxxxxxx --query "Images[*].Architecture" --output text
+
+Replace ami-xxxxxxxxxxxxxxxxx with your actual Ubuntu AMI ID. This will output the architecture of the AMI (e.g., x86_64).
+= = = = = = = = = = = = 
+
+Step 2: List Compatible Instance Types
+With the architecture in hand, you can now filter instance types:
+
+aws ec2 describe-instance-types --filters "Name=processor-info.supported-architecture,Values=x86_64" --query "InstanceTypes[*].InstanceType" --output table
+
+Replace x86_64 with the actual architecture from the previous step (e.g., arm64 if that’s the architecture).
+= = = = = = = = = = = = 
+
+Get the AMI architecture
+ami_architecture=$(aws ec2 describe-images --image-ids ami-xxxxxxxxxxxxxxxxx --query "Images[*].Architecture" --output text)
+
+= = = = = = = = = = = = 
+
+List compatible types
+aws ec2 describe-instance-types --filters "Name=processor-info.supported-architecture,Values=$ami_architecture" --query "InstanceTypes[*].InstanceType" --output table
 
