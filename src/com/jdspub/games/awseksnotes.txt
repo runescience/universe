@@ -1,6 +1,5 @@
 aws ec2 describe-instance-types --query "InstanceTypes[?starts_with(InstanceType, 't2.micro') || starts_with(InstanceType, 't3.micro') || starts_with(InstanceType, 't4g.micro') || contains(InstanceType, '.micro')]" --output table
 
-
 aws ec2 describe-images --image-ids ami-xxxxxxxxxxxxxxxxx --query "Images[*].Architecture" --output text
 
 
