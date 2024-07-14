@@ -3,4 +3,7 @@ aws ec2 describe-instance-types --query "InstanceTypes[?starts_with(InstanceType
 
 aws ec2 describe-images --owners amazon --filters "Name=name,Values=amzn-ami-*-*-x86_64-gp2" --query "Images[*].{ID:ImageId,Name:Name}" --output table
 
+aws ec2 describe-images --owners amazon --query "Images[*].{ID:ImageId,Name:Name}" --output table
+
+aws ec2 describe-images --owners amazon --query "Images[*].{ID:ImageId,Name:Name}" --output table
 
