@@ -30,6 +30,31 @@ ami_architecture=$(aws ec2 describe-images --image-ids ami-xxxxxxxxxxxxxxxxx --q
 
 = = = = = = = = = = = = 
 
-List compatible types
+List compatible types for my architectures
 aws ec2 describe-instance-types --filters "Name=processor-info.supported-architecture,Values=$ami_architecture" --query "InstanceTypes[*].InstanceType" --output table
+
+
+= = = = = = = = = = = = 
+
+
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: my-cluster
+  region: us-west-2
+  version: "1.21"
+
+iam:
+  serviceRoleARN: arn:aws:iam::123456789012:role/EKSClusterRole
+
+nodeGroups:
+  - name: standard-workers
+    instanceType: t3.medium
+    desiredCapacity: 3
+    minSize: 1
+    maxSize: 4
+
+
+= = = = = = = = = = = = 
 
