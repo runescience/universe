@@ -45,7 +45,7 @@ metadata:
   version: "1.21"
 
 iam:
-  serviceRoleARN: arn:aws:iam::123456789012:role/EKSClusterRole
+  serviceRoleARN: arn:aws:iam::123456789012:rol
 
 nodeGroups:
   - name: standard-workers
