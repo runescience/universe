@@ -1,1 +1,25 @@
+https://developer.hashicorp.com/terraform/tutorials/kubernetes/eks
 
+
+
+what is kpa k8s    - Container Service for Kubernetes:Configure auto scaling based on the number of requests. Last Updated:Mar 25, 2024. Knative Pod Autoscaler (KPA) is an out-of-the-box feature that can scale pods based on the number of requests. This topic describes how to configure auto scaling based on the number of requests.
+
+
+RKE is a fast, versatile Kubernetes installer that you can use to install Kubernetes on your Linux hosts. You can get started in a couple of quick and easy steps.Jul 28, 2023
+
+
+Introduction to Ansible
+Ansible provides open-source automation that reduces complexity and runs everywhere. Using Ansible lets you automate virtually any task. Here are some common use cases for Ansible:
+ 1)Eliminate repetition and simplify workflows
+ 2)Manage and maintain system configuration
+ 3)Continuously deploy complex software
+ 4)Perform zero-downtime rolling updates
+
+
+AWS Fargate Explained: Pros and Cons, Components & Key Features
+What Is AWS Fargate? 
+AWS Fargate is a serverless computing engine that allows you to run containers in the cloud without having to manage the underlying infrastructure. It is a compute engine for Amazon Elastic Container Service (ECS) that enables you to deploy and manage Docker containers without having to provision and manage the underlying servers or clusters.
+
+With Fargate, you only need to define the container requirements such as CPU, memory, and networking resources, and AWS will take care of the rest. This includes launching the required infrastructure resources, scaling resources as needed, and maintaining the underlying infrastructure.
+
+Fargate allows you to focus on your application instead of managing the infrastructure, making it easier to deploy and manage containerized applications in the cloud. It supports both Linux and Windows containers, and integrates with other AWS services such as Amazon Elastic Kubernetes Service (EKS), Amazon Simple Storage Service (S3), Amazon CloudWatch, and AWS Identity and Access Management (IAM).
