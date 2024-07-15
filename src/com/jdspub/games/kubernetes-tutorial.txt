@@ -1,1 +1,16 @@
-kubernetes tutorial
+
+
+kubernetes tutorial terraform tutorials
+
+https://github.com/terraform-aws-modules/terraform-aws-eks/tree/master
+
+https://kubernetes.io/docs/tutorials/hello-minikube/
+
+minikube start
+minikube is local Kubernetes, focusing on making it easy to learn and develop for Kubernetes.
+
+https://kubernetes.io/docs/tutorials/kubernetes-basics/
+
+https://kubernetes.io/docs/tutorials/kubernetes-basics/create-cluster/
+
+https://minikube.sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2Fstable%2F.exe+download
