@@ -1,0 +1,23 @@
+
+# Resources:
+  # MyS3Bucket:
+    # Type: AWS::S3::Bucket
+    # Properties:
+      # AccessControl: PublicRead
+      # BucketName: "up-on-a-hill-there-is-a-picnick-table-and-a-beatiful-girl"
+
+
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      # AccessControl: PublicRead / this does not work any longer, so delete this line
+      BucketName: "up-on-a-hill-there-is-a-picnick-table-and-a-beatiful-girl"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: ObjectWriter
+          
+        
