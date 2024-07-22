@@ -1,0 +1,35 @@
+#original
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties: {}     
+    #with no properties use the {} open close braces
+
+
+
+#Resources:
+#  MyS3Bucket:
+#    Type: AWS::S3::Bucket
+#    Properties:   #with properties remove the {}
+#        BucketName: #some.where.in.middle.earth.by.the.shire  #with bucket name
+  
+
+#Resources:
+#  MyS3Bucket:
+#    Type: AWS::S3::Bucket
+#    DeletionPolicy: Retain
+#    UpdateReplacePolicy: Retain
+#    Properties: {}
+
+
+
+#cloudFormation commandline aws cloudformation deploy --template-file short.yaml --stack-name absolutely-crazy-stackname
+# or Create stack with new resources. upload template-file
+#
+#Resources:
+#  MyS3BucketAABBCC:  { logical ID }
+#    Type: AWS::S3::Bucket
+#    DeletionPolicy: Retain
+#    UpdateReplacePolicy: Retain
+#    Properties: {}
+#    
