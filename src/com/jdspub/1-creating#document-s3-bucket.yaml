@@ -6,6 +6,38 @@ Resources:
     #with no properties use the {} open close braces
 
 
+Lecture 12:
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      # AccessControl: PublicRead / this does not work any longer, so delete this line
+      BucketName: "insert-some-random-string-here"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: ObjectWriter
+          
+          
+OR...
+
+Resources:
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: false
+        BlockPublicPolicy: false
+        IgnorePublicAcls: false
+        RestrictPublicBuckets: false
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+
+
+
 
 #Resources:
 #  MyS3Bucket:
