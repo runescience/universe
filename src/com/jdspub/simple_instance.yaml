@@ -1,52 +1,58 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Description: Create a simple EC2 instance
+# Use parameters statements and !refs: generate a minimal usable cloudformation yaml for a simple ec2 with the following data: ami-0ad, instance type t2.med, owner arn:aws:sts::xxxxx:assumed-role/blahblah-user/dishrag, EBS 60 gp3, eth0, subnet-041, security group id: sg-0e11, subnet: 0411, instance role profile: arn:aws:iam::533264626:instance-profile/blablah, keypair: xlaxlax.  
 
+# These parameters are required for a simple EC2 Instance
+Parameters:
+  ImageId:
+    Type: AWS::EC2::Image::Id
+    Default: ami-0ad
+  InstanceType:
+    Type: String
+    Default: t2.medium
+  OwnerArn:
+    Type: String
+    Default: arn:aws:sts::xxxxx:assumed-role/blahblah-user/dishrag
+  EbsSize:
+    Type: Number
+    Default: 60
+  Interface:
+    Type: String
+    Default: eth0
+  SubnetId:
+    Type: AWS::EC2::Subnet::Id
+    Default: subnet-0411
+  SecurityGroupId:
+    Type: AWS::EC2::SecurityGroup::Id
+    Default: sg-0e11
+  Subnet:
+    Type: String
+    Default: 0411
+  InstanceRoleProfileArn:
+    Type: String
+    Default: arn:aws:iam::533264626:instance-profile/blablah
+  KeyPairName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Default: xlaxlax
+
+# These resources make up the simple EC2 instance.
 Resources:
   EC2Instance:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-0ad
-      InstanceType: t2.medium
-      IamInstanceProfile: !Ref InstanceProfile
+      ImageId: !Ref ImageId
+      InstanceType: !Ref InstanceType
+      IamInstanceProfile: !Ref InstanceRoleProfileArn
+      KeyName: !Ref KeyPairName
       NetworkInterfaces:
-        - AssociatePublicIpAddress: "true"
+        - AssociatePublicIpAddress: "false"
+          DeleteOnTermination: "true"
           DeviceIndex: "0"
           GroupSet:
-            - sg-0e11
-          SubnetId: subnet-0411
+            - !Ref SecurityGroupId
+          SubnetId: !Ref SubnetId
       BlockDeviceMappings:
-        - DeviceName: /dev/xvda
+        - DeviceName: /dev/sda1
           Ebs:
-            VolumeSize: 60
+            VolumeSize: !Ref EbsSize
             VolumeType: gp3
-
-  InstanceProfile:
-    Type: AWS::IAM::InstanceProfile
-    Properties:
-      Roles:
-        - !Ref InstanceRole
-
-  InstanceRole:
-    Type: AWS::IAM::Role
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              AWS: !Sub 'arn:aws:sts::${AWS::AccountId}:assumed-role/blahblah-user/dishrag'
-            Action:
-              - 'sts:AssumeRole'
-      ManagedPolicyArns:
-        - !Ref AmazonEC2ReadOnlyAccess
-
-  AmazonEC2ReadOnlyAccess:
-    Type: AWS::IAM::ManagedPolicy
-    Properties:
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Action:
-              - 'ec2:Describe*'
-            Resource: '*'
+      OwnerArn: !Ref OwnerArn
+      SubnetId: !Ref Subnet

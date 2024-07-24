@@ -1,6 +1,26 @@
 # Use parameters statements and !refs: generate a minimal usable cloudformation yaml for a simple ec2 with the following data: ami-0ad, instance type t2.med, owner arn:aws:sts::xxxxx:assumed-role/blahblah-user/dishrag, EBS 60 gp3, eth0, subnet-041, security group id: sg-0e11, subnet: 0411, instance role profile: arn:aws:iam::533264626:instance-profile/blablah, keypair: xlaxlax.  
 
 # These parameters are required for a simple EC2 Instance
+#AWSTemplateFormatVersion: 2010-09-09
+Description: Simple EC2 Instance with Required Parameters 
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: EC2 Instance Configuration
+        Parameters:
+          - ImageId
+          - InstanceType
+          - OwnerArn
+          - EbsSize
+          - Interface
+          - SubnetId
+          - SecurityGroupId
+          - Subnet
+          - InstanceRoleProfileArn
+          - KeyPairName
+
+
 Parameters:
   ImageId:
     Type: AWS::EC2::Image::Id

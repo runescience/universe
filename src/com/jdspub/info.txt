@@ -1,0 +1,224 @@
+ake An Instance
+
+Launch template ID lt-073f988e84d72e4fe
+
+Launch template name  MyInstanceTemplate
+
+Default version 1
+
+Owner arn:aws:sts::533267064080:assumed-role/evoforge-user/jdsirag
+
+
+
+Description version1
+
+Date created 2024-07-23T23:43:35.000Z
+
+Created by arn:aws:sts::533267064080:assumed-role/evoforge-user/jdsirag
+
+
+
+AMI ID ami-0ad4c51abd20d112c
+
+Instance type t2.medium
+
+Availability Zone -
+Key pair name ubuntu
+
+Security groups -
+Security group IDs  sg-0e8747e16e331596a
+
+EBS
+
+	
+
+/dev/sda1
+
+	
+
+-
+
+	
+
+60
+
+	
+
+gp3
+
+	
+
+3000
+
+	
+
+Yes
+
+	
+
+No
+
+	
+
+125
+
+	
+
+-
+
+	
+
+-
+
+
+
+Device
+
+	
+
+Network interface
+
+	
+
+Description
+
+	
+
+Subnet
+
+	
+
+Auto-assign public IP
+
+	
+
+Auto-assign Carrier IP
+
+	
+
+Primary IP
+
+	
+
+IPv6 IPs
+
+	
+
+Assign primary IPv6 IP
+
+	
+
+IPv4 Prefixes
+
+	
+
+IPv6 Prefixes
+
+	
+
+Security group IDs
+
+	
+
+Delete on termination
+
+	
+
+Elastic fabric adaptor
+
+	
+
+Network card index
+
+	
+
+ENA Express
+
+	
+
+ENA Express UDP
+
+eth0
+
+	
+
+-
+
+	
+
+-
+
+	
+
+subnet-041908228d40dc528
+
+	
+
+Disabled
+
+	
+
+-
+
+	
+
+-
+
+	
+
+-
+
+	
+
+-
+
+	
+
+-
+
+	
+
+-
+
+	
+
+sg-0e8747e16e331596a
+
+	
+
+Yes
+
+	
+
+-
+
+	
+
+0
+
+	
+
+-
+
+	
+
+-
+
+
+
+Subnet subnet-041111111d11dc111
+
+Security Group IDs: sg-0e1111e11e111111a
+
+
+
+IAM instance profile  arn:aws:iam::533267064080:instance-profile/evoforge-user
+
+User Data: #!/bin/bash
+apt update -y
+apt install -y httpd
+systemctl start httpd
+systemctl enable httpd
+echo "Hello World" > /var/www/html/index.html
+#curl -s http://169254.169.254/latest/dynamic/instance-identity/document > /var/www/html/index.html
+
