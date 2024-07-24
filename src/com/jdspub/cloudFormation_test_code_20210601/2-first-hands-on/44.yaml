@@ -1,0 +1,9 @@
+#cloudFormation commandline aws cloudformation deploy --template-file short.yaml --stack-name absolutely-crazy-stackname
+# or Create stack with new resources. upload template-file
+Resources:
+  MyS3BucketAABBCC:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties: {}
+    

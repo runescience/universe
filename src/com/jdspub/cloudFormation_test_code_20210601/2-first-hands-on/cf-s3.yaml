@@ -1,0 +1,6 @@
+Resources:
+  LogicalS3bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ${AWS::StackName}-logicals3-${AWS::AccountId}
+      BucketEncryption:
