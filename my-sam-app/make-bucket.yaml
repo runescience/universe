@@ -1,0 +1,58 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  MyTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: MyData
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+    Metadata:
+      SamResourceId: MyTable
+  MyLambdaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      CodeUri: s3://my-sam-deployment-bucket-a1b2c3/228aa20da63c47547b377c2f166d6c09
+      MemorySize: 128
+      Timeout: 5
+      Environment:
+        Variables:
+          TABLE_NAME:
+            Ref: MyTable
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: MyTable
+    Metadata:
+      SamResourceId: MyLambdaFunction
+  ApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      DefinitionBody:
+        swagger: '2.0'
+        info:
+          title: MyAPI
+          description: API for My Lambda Function
+        paths:
+          /submit:
+            post:
+              x-amazon-apigateway-integration:
+                uri:
+                  Fn::Sub: arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${MyLambdaFunction.Arn}/invocations
+                httpMethod: POST
+                type: aws_proxy
+    Metadata:
+      SamResourceId: ApiGateway
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL for Prod stage
+    Value:
+      Fn::Sub: https://${ApiGateway}.execute-api.${AWS::Region}.amazonaws.com/Prod/submit

@@ -1,7 +1,11 @@
 #original
+#Resources:
+#  MyS3Bucket:
+#    Type: AWS::S3::Bucket
+#    Properties: {}     
+
 Resources:
   MyS3Bucket:
     Type: AWS::S3::Bucket
-    Properties: {}     
-    
-    
+    Properties:
+      BucketName: my-sam-deployment-bucket-jds-A1b2c3

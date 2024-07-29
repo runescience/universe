@@ -2,7 +2,7 @@
 
 # These parameters are required for a simple EC2 Instance
 #AWSTemplateFormatVersion: 2010-09-09
-Description: Simple EC2 Instance with Required Parameters 
+Description: Simple EC2 Instance with Required Parameters
 Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
@@ -19,7 +19,6 @@ Metadata:
           - Subnet
           - InstanceRoleProfileArn
           - KeyPairName
-
 
 Parameters:
   ImageId:
@@ -45,7 +44,7 @@ Parameters:
     Default: sg-0e11
   Subnet:
     Type: String
-    Default: 0411
+    Default: 411
   InstanceRoleProfileArn:
     Type: String
     Default: arn:aws:iam::533264626:instance-profile/blablah
@@ -63,9 +62,9 @@ Resources:
       IamInstanceProfile: !Ref InstanceRoleProfileArn
       KeyName: !Ref KeyPairName
       NetworkInterfaces:
-        - AssociatePublicIpAddress: "false"
-          DeleteOnTermination: "true"
-          DeviceIndex: "0"
+        - AssociatePublicIpAddress: 'false'
+          DeleteOnTermination: 'true'
+          DeviceIndex: '0'
           GroupSet:
             - !Ref SecurityGroupId
           SubnetId: !Ref SubnetId
@@ -75,4 +74,4 @@ Resources:
             VolumeSize: !Ref EbsSize
             VolumeType: gp3
       OwnerArn: !Ref OwnerArn
-      SubnetId: !Ref Subnet
+      SubnetId: !Ref SubnetId
