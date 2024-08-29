@@ -1,0 +1,67 @@
+new dynamo table problem. do not share. space exploration game. 
+players get 1 ship with a ship name and a shiptag(SHIP########). 
+a ship is an array of parts. a part has a shortname, description, quantity, damage, techlvl,startquan. 
+parts include name(shortname)*quantity : shields(sh)*4, engines(en)*5, cargo-slots(cg)*100,missles(mi)*2, mining-rig(mr)*2, crew(pe)*100. 
+There is a location table that contains an object and a location as xx,yy. 
+objects can be ships, hazards, cache, wormhole, planets. how should I organize the new dynamo table.
+
+
+For the space exploration game scenario you described, I would recommend organizing the data in a single DynamoDB table with a composite primary key consisting of a partition key and a sort key. Here's a possible table design: [1]
+
+Table Name:  SpaceObjects
+
+Partition Key (PK): 
+ObjectType#ObjectID
+
+ObjectType can be one of the following: SHIP, HAZARD ,  CACHE , WORMHOLE, PLANET
+
+ObjectID is a unique identifier for the object (e.g., SHIP123456, HAZARD789, PLANET001)
+
+Sort Key (SK): DataType
+DataType can be one of the following: DETAILS,PARTS, LOCATION
+
+Example Data:
+
+
+PK                     SK        Other Attributes
+---------------------  --------  --------------------------------------------------
+SHIP#SHIP123456        DETAILS   ShipName, ShipTag, ...
+SHIP#SHIP123456        PARTS     Parts (Array of Part objects)
+SHIP#SHIP123456        LOCATION  xx, yy
+HAZARD#HAZARD789       DETAILS   HazardName, HazardDescription, ...
+HAZARD#HAZARD789       LOCATION  xx, yy
+CACHE#CACHE456         DETAILS   CacheDescription, ...
+CACHE#CACHE456         LOCATION  xx, yy
+WORMHOLE#WORMHOLE123   DETAILS   WormholeDescription, ...
+WORMHOLE#WORMHOLE123   LOCATION  xx, yy
+PLANET#PLANET001       DETAILS   PlanetName, PlanetDescription, ...
+PLANET#PLANET001       LOCATION  xx, yy
+
+
+In this design:
+
+The PK (Partition Key) is a combination of ObjectType and ObjectID, 
+which allows you to efficiently query and retrieve data for a specific object type and object ID.
+
+The  SK  (Sort Key) is the  DataType, which can be  DETAILS,  PARTS, or LOCATION . 
+This allows you to store different types of data (details, parts, location) for each object in separate items within the same partition.
+
+For ships, you can store the ship details (name, tag, etc.) in an item with SK as DETAILS, 
+the parts array in an item with  SK  as PARTS, 
+and the location in an item with  SK as LOCATION`.
+
+For other object types (hazards, caches, wormholes, planets), you can store their details in items with 
+SK  as  DETAILS  and their locations in items with  SK  as  LOCATION .
+
+With this design, you can efficiently query and retrieve data for specific object types and object IDs using the partition key. You can also query for specific data types (details, parts, location) within an object using the sort key.
+
+To retrieve all data for a specific ship, you can perform a  Query
+ operation on the partition key (  PK=SHIP#SHIP123456 ) and 
+retrieve all items with different sort keys ( DETAILS, PARTS,  LOCATION ).
+
+Additionally, you can create Global Secondary Indexes (GSIs) if you need to query the data based on different attributes, such as location ( 
+xx and yy ) or part details (e.g., TechLvl).
+
+This design follows the best practices of DynamoDB table design, which recommend using a single table for an application and leveraging the composite primary key and Global Secondary Indexes to efficiently query and access the data. [2]
+
+
