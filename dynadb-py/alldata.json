@@ -1,0 +1,161 @@
+[
+    {
+        "objects": [],
+        "xyLocation": "0,0"
+    },
+    {
+        "objects": [
+            {
+                "details": {
+                    "ownertag": "SHIP0005",
+                    "shipname": "USS Sun Soar",
+                    "shipparts": [
+                        {
+                            "partname": "new_engine",
+                            "partquan": 3
+                        },
+                        {
+                            "partname": "mininig_unit",
+                            "partquan": 1
+                        }
+                    ],
+                    "shipsize": 9000
+                },
+                "type": "ship"
+            }
+        ],
+        "xyLocation": "6,12"
+    },
+    {
+        "objects": [
+            {
+                "details": {
+                    "ownertag": "SHIP0037",
+                    "shipname": "USS Enterprise",
+                    "shipparts": [
+                        {
+                            "partname": "engine",
+                            "partquan": 2
+                        },
+                        {
+                            "partname": "hull",
+                            "partquan": 1
+                        },
+                        {
+                            "partname": "crew",
+                            "partquan": 100
+                        }
+                    ],
+                    "shipsize": 1000
+                },
+                "type": "ship"
+            }
+        ],
+        "xyLocation": "66,77"
+    },
+    {
+        "objects": [],
+        "xyLocation": "12,34"
+    },
+    {
+        "objects": [
+            {
+                "details": {
+                    "ownertag": "SHIP0100",
+                    "shipname": "USS New Voyager",
+                    "shipparts": [
+                        {
+                            "partname": "warp_drive",
+                            "partquan": 2
+                        },
+                        {
+                            "partname": "laser_cannons",
+                            "partquan": 4
+                        },
+                        {
+                            "partname": "mining_drones",
+                            "partquan": 2
+                        },
+                        {
+                            "partname": "shields",
+                            "partquan": 5
+                        },
+                        {
+                            "partname": "hull",
+                            "partquan": 18
+                        },
+                        {
+                            "partname": "ecm",
+                            "partquan": 1
+                        },
+                        {
+                            "partname": "bulkhead",
+                            "partquan": 10
+                        },
+                        {
+                            "partname": "short_scanner",
+                            "partquan": 1
+                        },
+                        {
+                            "partname": "pe",
+                            "partquan": 1000
+                        },
+                        {
+                            "partname": "spares",
+                            "partquan": 20
+                        },
+                        {
+                            "partname": "eng",
+                            "partquan": 8
+                        },
+                        {
+                            "partname": "screens",
+                            "partquan": 6
+                        },
+                        {
+                            "partname": "short_scanner",
+                            "partquan": 20
+                        },
+                        {
+                            "partname": "long_scanner",
+                            "partquan": 1
+                        },
+                        {
+                            "partname": "worm_points",
+                            "partquan": 2
+                        },
+                        {
+                            "partname": "shield_booster",
+                            "partquan": 4
+                        },
+                        {
+                            "partname": "worm_points",
+                            "partquan": 2
+                        },
+                        {
+                            "partname": "shield_booster",
+                            "partquan": 4
+                        }
+                    ],
+                    "shipsize": 7500
+                },
+                "type": "ship"
+            }
+        ],
+        "xyLocation": "34,56"
+    },
+    {
+        "objects": [
+            {
+                "details": {
+                    "ownertag": "SHIP9871",
+                    "shipname": "USS Sun Soar",
+                    "shipparts": [],
+                    "shipsize": 0
+                },
+                "type": "ship"
+            }
+        ],
+        "xyLocation": "6,12"
+    }
+]
